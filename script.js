@@ -31,7 +31,7 @@ document.addEventListener('keydown', function (e) {
 });
 
 // inserting element
-const message = document.createElement('div');
+/*const message = document.createElement('div');
 message.classList.add('cookie-message');
 message.innerHTML = 'We use cookies for improved functionality and analytics. <button class="btn btn--close-cookie"> Got it!</button>';
 const header = document.querySelector('.header');
@@ -39,6 +39,14 @@ header.append(message);
 //deleting element 
 document.querySelector(".btn--close-cookie").addEventListener('click',function(){
   message.remove();
+}); */
+
+// implementing smooth scrolling
+
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
+btnScrollTo.addEventListener('click',function(){
+  section1.scrollIntoView({behavior : 'smooth'});
 })
 
 
