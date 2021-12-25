@@ -66,7 +66,6 @@ document.querySelector(".nav__links").addEventListener('click',function(e){
 const tabs = document.querySelectorAll('.operations__tab');
 const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
-console.log(tabsContainer);
 
 tabsContainer.addEventListener('click',function(e){
   const clicked = e.target.closest('.operations__tab');
