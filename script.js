@@ -6,6 +6,10 @@ const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const btnScrollTo = document.querySelector(".btn--scroll-to");
 const section1 = document.querySelector("#section--1");
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+const nav = document.querySelector('.nav');
 
 ///////////////////////////////////////
 // Modal window
@@ -22,10 +26,8 @@ const closeModal = function () {
 };
 
 btnsOpenModal.forEach(btn => btn.addEventListener('click', openModal));
-
 btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
-
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
     closeModal();
@@ -63,9 +65,6 @@ document.querySelector(".nav__links").addEventListener('click',function(e){
 });
 
 // tabbed component
-const tabs = document.querySelectorAll('.operations__tab');
-const tabsContainer = document.querySelector('.operations__tab-container');
-const tabsContent = document.querySelectorAll('.operations__content');
 
 tabsContainer.addEventListener('click',function(e){
   const clicked = e.target.closest('.operations__tab');
@@ -81,4 +80,25 @@ tabsContainer.addEventListener('click',function(e){
   document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList
                          .add('operations__content--active');
 });
+
+// Menu fade animation
+
+const hundelHover = function(e){
+  const link = e.target;
+  if (link.classList.contains('nav__link')){
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('img');
+    siblings.forEach(sibling => {
+      if (sibling !== link){
+        sibling.style.opacity = this;
+      }
+    });
+    logo.style.opacity = this;
+  }
+}
+// passing "argument" to handler
+nav.addEventListener('mouseover',hundelHover.bind(0.5));
+nav.addEventListener('mouseout',hundelHover.bind(1));
+ 
+
 
