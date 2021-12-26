@@ -100,5 +100,27 @@ const hundelHover = function(e){
 nav.addEventListener('mouseover',hundelHover.bind(0.5));
 nav.addEventListener('mouseout',hundelHover.bind(1));
  
+// sticky navigation bar
+// 1- the old way bad for performances
 
+/*const initialCords = section1.getBoundingClientRect();
+window.addEventListener('scroll',function(){
+  if(window.scrollY > initialCords.top) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+});*/
 
+// sticky navigation bar
+// 2- using intersection observer API
+
+const stickyNav = function(entries){
+  const [entry]= entries ;
+  console.log(entry);
+  if (!entry.isIntersecting) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+}; 
+const header = document.querySelector('.header');
+const navHeight = nav.getBoundingClientRect().height;
+const obsHeader = new IntersectionObserver(stickyNav , {root : null ,
+   threshold : 0 ,
+   rootMargin : `-${navHeight}px`});
+obsHeader.observe(header);
